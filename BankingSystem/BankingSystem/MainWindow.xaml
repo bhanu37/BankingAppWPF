@@ -1,0 +1,29 @@
+﻿<Window x:Class="BankingSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankingSystem"
+        xmlns:vw="clr-namespace:BankingSystem.View"
+        xmlns:vm="clr-namespace:BankingSystem.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="1100">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:LoginVM}">
+            <vw:LoginView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SignupVM}">
+            <vw:SignupVM/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:HomeVM}">
+            <vw:HomeView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Border CornerRadius="10" Height="650" Width="1000" Background="LightGray">
+        <Grid Height="620" Width="970">
+            <ContentControl Grid.Row="1" Content="{Binding CurrentVM}">
+                
+            </ContentControl>
+        </Grid>
+    </Border>
+</Window>

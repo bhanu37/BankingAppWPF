@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="BankingSystem.View.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BankingSystem.View"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="btn">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border Background="Gray" Height="300" Width="250">
+            <StackPanel HorizontalAlignment="Center">
+                <Label Content="Log In" FontSize="30" HorizontalAlignment="Center"/>
+                <Label Content="Email or Account No." Margin="0 20 0 0" FontSize="15"/>
+                <TextBox Text="{Binding EmailOrAccount, UpdateSourceTrigger=PropertyChanged}"  FontSize="20"/>
+                <Label Content="Password" Margin="0 20 0 0" FontSize="15"/>
+                <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <Button Content="Log In" Command="{Binding Login}" Padding="10"/>
+                    <Label Content="Don't have account" VerticalAlignment="Bottom"/>
+                    <Button Content="Signup" Command="{Binding NavigateToSignup}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
