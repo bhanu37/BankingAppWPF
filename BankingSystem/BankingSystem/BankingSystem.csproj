@@ -12,7 +12,6 @@
     <Folder Include="Utilities\Helpers\" />
     <Folder Include="Utilities\Converters\" />
     <Folder Include="Model\DataBaseConnection\Migrations\" />
-    <Folder Include="Model\DataServices\" />
     <Folder Include="Utilities\Resouces\" />
   </ItemGroup>
 

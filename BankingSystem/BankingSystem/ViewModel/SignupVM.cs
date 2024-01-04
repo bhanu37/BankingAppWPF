@@ -1,4 +1,5 @@
-﻿using BankingSystem.Model.Entities;
+﻿using BankingSystem.Model.DataServices;
+using BankingSystem.Model.Entities;
 using BankingSystem.Utilities.Commands;
 using BankingSystem.Utilities.Stores;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BankingSystem.ViewModel
@@ -16,7 +18,7 @@ namespace BankingSystem.ViewModel
 
         private string _firstName;
         private string _lastName;
-        private string _emailOrAccount;
+        private string _email;
         private string _password;
 
         public string Header => "Sign Up";
@@ -38,13 +40,13 @@ namespace BankingSystem.ViewModel
                 OnPropertyChanged(nameof(LastName));    
             }
         }
-        public string EmailOrAccount
+        public string Email
         {
-            get { return _emailOrAccount; }
+            get { return _email; }
             set
             {
-                _emailOrAccount = value;
-                OnPropertyChanged(nameof(EmailOrAccount));
+                _email = value;
+                OnPropertyChanged(nameof(Email));
             }
         }
         public string Password
@@ -67,11 +69,16 @@ namespace BankingSystem.ViewModel
             Signup = new FunctionalCommand(UserSignUp);
         }
 
-        private void UserSignUp()
+        private async void UserSignUp()
         {
-            //signup success
-            LoggedAccount loggedAccount = new LoggedAccount() { Name = _emailOrAccount.Substring(0, _emailOrAccount.IndexOf("@")), Email = _emailOrAccount };
-            _navigationStore.CurrentVM = new HomeVM(loggedAccount);
+            SignupDataService signupDataService = new SignupDataService();
+            LoggedAccount loggedAccount = await signupDataService.CustomerSignup(FirstName, LastName, Email, Password);
+
+            if (loggedAccount != null)
+            {
+                //signup success
+                _navigationStore.CurrentVM = new HomeVM(loggedAccount);
+            }            
         }
     }
 }

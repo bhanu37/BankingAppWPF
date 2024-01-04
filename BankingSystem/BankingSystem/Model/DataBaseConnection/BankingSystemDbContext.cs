@@ -18,5 +18,12 @@ namespace BankingSystem.Model.DataBaseConnection
         #region Ctor
         public BankingSystemDbContext(DbContextOptions<BankingSystemDbContext> options) : base(options) { }
         #endregion
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CustomerPOCO>().HasIndex(p => p.Email).IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

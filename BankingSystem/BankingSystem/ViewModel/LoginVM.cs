@@ -1,4 +1,5 @@
-﻿using BankingSystem.Model.Entities;
+﻿using BankingSystem.Model.DataServices;
+using BankingSystem.Model.Entities;
 using BankingSystem.Utilities.Commands;
 using BankingSystem.Utilities.Stores;
 using System;
@@ -48,11 +49,16 @@ namespace BankingSystem.ViewModel
             Login = new FunctionalCommand(UserLogIn);
         }
 
-        private void UserLogIn()
+        private async void UserLogIn()
         {
-            //login success
-            LoggedAccount loggedAccount = new LoggedAccount() { Name = _emailOrAccount.Substring(0, _emailOrAccount.IndexOf("@")), Email = _emailOrAccount};
-            _navigationStore.CurrentVM = new HomeVM(loggedAccount);
+            SignupDataService signupDataService = new SignupDataService();
+            LoggedAccount loggedAccount = await signupDataService.CustomerSignin(EmailOrAccount, Password);
+
+            if(loggedAccount != null)
+            {
+                //login success
+                _navigationStore.CurrentVM = new HomeVM(loggedAccount);
+            }
         }
     }
 }

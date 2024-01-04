@@ -4,6 +4,7 @@ using BankingSystem.Model.DataBaseConnection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingSystem.Model.DataBaseConnection.Migrations
 {
     [DbContext(typeof(BankingSystemDbContext))]
-    partial class BankingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240104182839_addednullabletoextrafields")]
+    partial class addednullabletoextrafields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +72,7 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -90,9 +93,6 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("Customers");
                 });

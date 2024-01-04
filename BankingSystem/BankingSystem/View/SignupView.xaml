@@ -29,7 +29,7 @@
                     </StackPanel>
                 </StackPanel>
                 <Label Content="Email or Account No." Margin="0 20 0 0" FontSize="15"/>
-                <TextBox Text="{Binding EmailOrAccount, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
                 <Label Content="Password" Margin="0 20 0 0" FontSize="15"/>
                 <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
