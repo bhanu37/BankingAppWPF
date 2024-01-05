@@ -77,7 +77,8 @@ namespace BankingSystem.ViewModel
             if (loggedAccount != null)
             {
                 //signup success
-                _navigationStore.CurrentVM = new HomeVM(loggedAccount);
+                _navigationStore.CurrentVM = new HomeVM();
+                _navigationStore.NavSideBarVM = new NavigationSideBarVM(loggedAccount, _navigationStore);
             }            
         }
     }

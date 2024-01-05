@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="BankingSystem.View.NavigationSideBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BankingSystem.View"
+             mc:Ignorable="d"
+             Width="250" Height="650">
+    <Grid>
+        <StackPanel>
+            <Label Content="FinFy" FontSize="30" FontWeight="ExtraBold" Foreground="Blue"/>
+            <Label Content="{Binding Name}" FontSize="20" FontWeight="Bold"/>
+            <Label Content="{Binding Email}" FontSize="15"/>
+            <StackPanel HorizontalAlignment="Left" Margin="20">
+                <Button Content="Home" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToHome}"/>
+                <Button Content="Profile" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToProfile}"/>
+                <Button Content="Transactions" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToTransactions}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="Send Money" Margin="5" Padding="5" FontSize="15" Command=""/>
+                <Button Content="Request Money" Margin="5" Padding="5" FontSize="15" Command=""/>
+            </StackPanel>
+            <Button Content="Log Out" Margin="10" Padding="5" FontSize="15"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -18,10 +18,27 @@
         <DataTemplate DataType="{x:Type vm:HomeVM}">
             <vw:HomeView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ProfileVM}">
+            <vw:ProfileView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TransactionsVM}">
+            <vw:TransactionsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:NavigationSideBarVM}">
+            <vw:NavigationSideBar/>
+        </DataTemplate>
     </Window.Resources>
-    <Border CornerRadius="10" Height="650" Width="1000" Background="LightGray">
-        <Grid Height="620" Width="970">
-            <ContentControl Grid.Row="1" Content="{Binding CurrentVM}">
+    <Border Height="650" Width="1000" Background="LightGray">
+        <Grid Height="650" Width="1000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="#424769" Grid.Column="0"></Border>
+            <ContentControl Grid.Column="0" Content="{Binding NavSideBarVM}">
+
+            </ContentControl>
+            <ContentControl Grid.Column="1" Content="{Binding CurrentVM}">
                 
             </ContentControl>
         </Grid>
