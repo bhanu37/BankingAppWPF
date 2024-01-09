@@ -14,5 +14,7 @@ namespace BankingSystem.ViewModel
         public HomeVM()
         {
         }
+
+        ~HomeVM() { }
 	}
 }

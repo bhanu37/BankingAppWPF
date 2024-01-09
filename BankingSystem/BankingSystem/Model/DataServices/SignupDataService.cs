@@ -31,7 +31,7 @@ namespace BankingSystem.Model.DataServices
                 var entity = await _dbContext.Customers.AddAsync(customerPOCO);
                 await _dbContext.SaveChangesAsync();
                 var user = entity.Entity;
-                loggedAccount = new LoggedAccount() { Name = user.FirstName + " " + user.LastName, Email = user.Email };
+                loggedAccount = new LoggedAccount() { Id = user.CustomerId, Name = user.FirstName + " " + user.LastName, Email = user.Email };
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace BankingSystem.Model.DataServices
             try
             {
                 var customer = await _dbContext.Customers.FirstOrDefaultAsync(cost =>  cost.Email == email && cost.Password == password);
-                loggedAccount = new LoggedAccount() { Name = customer.FirstName + " " + customer.LastName, Email = customer.Email };
+                loggedAccount = new LoggedAccount() { Id = customer.CustomerId, Name = customer.FirstName + " " + customer.LastName, Email = customer.Email };
             }
             catch (NullReferenceException e)
             {

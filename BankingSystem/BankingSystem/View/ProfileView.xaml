@@ -5,8 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankingSystem.View"
              mc:Ignorable="d" 
-             Width="750" Height="650">
+             Width="800" Height="650">
     <Grid>
-        <Label Content="{Binding Header}" FontSize="50"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Content="{Binding Header}" FontSize="50"/>
+
+        <Grid Grid.Row="1">
+            <StackPanel HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Label Content="Name: " FontSize="20"/>
+                    <Label Content="{Binding CustomerProfile.Name}" FontSize="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Label Content="Email: " FontSize="20"/>
+                    <Label Content="{Binding CustomerProfile.Email}" FontSize="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Label Content="Phone: " FontSize="20"/>
+                    <Label Content="{Binding CustomerProfile.Phone}" FontSize="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Label Content="Gender: " FontSize="20"/>
+                    <Label Content="{Binding CustomerProfile.Gender}" FontSize="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Label Content="DOB: " FontSize="20"/>
+                    <Label Content="{Binding CustomerProfile.DOB}" FontSize="30"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="20">
+                    <Label Content="Address: " FontSize="20"/>
+                    <Label Content="{Binding CustomerProfile.Address}" FontSize="30"/>
+                </StackPanel>
+                <Button Content="Update Profile" Command="{Binding UpdateProfileCMD}" FontSize="20" Margin="20"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

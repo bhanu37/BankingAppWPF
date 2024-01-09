@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankingSystem.View"
              mc:Ignorable="d"
-             Width="250" Height="650">
+             Width="200" Height="650">
     <Grid>
         <StackPanel>
             <Label Content="FinFy" FontSize="30" FontWeight="ExtraBold" Foreground="Blue"/>
@@ -17,10 +17,10 @@
                 <Button Content="Transactions" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToTransactions}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Send Money" Margin="5" Padding="5" FontSize="15" Command=""/>
-                <Button Content="Request Money" Margin="5" Padding="5" FontSize="15" Command=""/>
+                <Button Content="Send Money" Margin="5" Padding="5" FontSize="10" Command=""/>
+                <Button Content="Request Money" Margin="5" Padding="5" FontSize="10" Command=""/>
             </StackPanel>
-            <Button Content="Log Out" Margin="10" Padding="5" FontSize="15"/>
+            <Button Content="Log Out" Margin="10" Padding="5" FontSize="10"/>
         </StackPanel>
     </Grid>
 </UserControl>

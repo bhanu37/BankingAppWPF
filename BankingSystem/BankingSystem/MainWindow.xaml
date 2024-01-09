@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BankingSystem"
         xmlns:vw="clr-namespace:BankingSystem.View"
         xmlns:vm="clr-namespace:BankingSystem.ViewModel"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1100">
     <Window.Resources>

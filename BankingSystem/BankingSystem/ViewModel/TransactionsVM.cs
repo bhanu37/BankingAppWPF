@@ -9,5 +9,6 @@ namespace BankingSystem.ViewModel
     public class TransactionsVM : ViewModelBase
     {
         public string Header => "Transaction Page";
+        ~TransactionsVM() { }
     }
 }

@@ -25,7 +25,7 @@ namespace BankingSystem.ViewModel
         {
             _loggedAccount = loggedAccount;
             NavigateToHome = new NavigationCommand(_navigationStore, () => new HomeVM());
-            NavigateToProfile = new NavigationCommand(_navigationStore, () => new ProfileVM());
+            NavigateToProfile = new NavigationCommand(_navigationStore, () => new ProfileVM(_loggedAccount, _navigationStore));
             NavigateToTransactions = new NavigationCommand(_navigationStore, () => new TransactionsVM());
         }
     }
