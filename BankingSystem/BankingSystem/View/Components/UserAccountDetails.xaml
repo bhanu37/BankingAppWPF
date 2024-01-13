@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="BankingSystem.View.Components.UserAccountDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BankingSystem.View.Components"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" Visibility="{Binding BankAccountExist, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Account No.: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.AccountNumber}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Account Status: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.Status}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Account Type: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.Type}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Creation Date: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.CreationDate}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Branch Name: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.BranchName}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Branch City: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.BranchLocation}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Branch Manager: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.BranchManager}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="IFSC Code: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.IFSCCode}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Interest Rate: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.InterestRate}" FontSize="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <Label Content="Balance: " FontSize="20"/>
+                <Label Content="{Binding UserBankAccount.Balance}" FontSize="30"/>
+            </StackPanel>
+        </StackPanel>
+        <Button Grid.Row="1" Content="Create Bank Account" Command="{Binding CreateBankAccountCMD}" Visibility="{Binding CreateAccountCommandVisibility, Converter={StaticResource BoolToVisibilityConverter}}" FontSize="20" Margin="20"/>
+    </Grid>
+</UserControl>

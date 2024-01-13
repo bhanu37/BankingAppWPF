@@ -24,6 +24,7 @@ namespace BankingSystem.Model.POCO
 
         #region Relations
         public AddressPOCO AddressPOCO { get; set; }
+        public BankAccountPOCO BankAccountPOCO { get; set;}
         #endregion
     }
 }

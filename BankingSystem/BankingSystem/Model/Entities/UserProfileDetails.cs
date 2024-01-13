@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BankingSystem.Model.Entities
 {
-    public class CustomerProfile : EntityPropertyChanged
+    public class UserProfileDetails : EntityPropertyChanged
     {
         private string _name;
         private string _email;

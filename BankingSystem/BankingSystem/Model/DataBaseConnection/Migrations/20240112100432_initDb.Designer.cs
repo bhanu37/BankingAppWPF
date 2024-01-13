@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankingSystem.Model.DataBaseConnection.Migrations
 {
     [DbContext(typeof(BankingSystemDbContext))]
-    [Migration("20240104182839_addednullabletoextrafields")]
-    partial class addednullabletoextrafields
+    [Migration("20240112100432_initDb")]
+    partial class initDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,6 +59,75 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("BankingSystem.Model.POCO.BankAccountPOCO", b =>
+                {
+                    b.Property<int>("AccountNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountNumber"));
+
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("BranchId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("InterestRate")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AccountNumber");
+
+                    b.HasIndex("BranchId");
+
+                    b.HasIndex("CustomerId")
+                        .IsUnique();
+
+                    b.ToTable("BankAccounts");
+                });
+
+            modelBuilder.Entity("BankingSystem.Model.POCO.BankBranchPOCO", b =>
+                {
+                    b.Property<int>("BankBranchId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BankBranchId"));
+
+                    b.Property<string>("BranchLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BranchManager")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BranchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IFSCCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BankBranchId");
+
+                    b.ToTable("BankBranches");
+                });
+
             modelBuilder.Entity("BankingSystem.Model.POCO.CustomerPOCO", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -72,7 +141,7 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -94,6 +163,9 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
 
                     b.HasKey("CustomerId");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Customers");
                 });
 
@@ -108,9 +180,34 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("BankingSystem.Model.POCO.BankAccountPOCO", b =>
+                {
+                    b.HasOne("BankingSystem.Model.POCO.BankBranchPOCO", "Branch")
+                        .WithMany("BankAccountPOCO")
+                        .HasForeignKey("BranchId");
+
+                    b.HasOne("BankingSystem.Model.POCO.CustomerPOCO", "Customer")
+                        .WithOne("BankAccountPOCO")
+                        .HasForeignKey("BankingSystem.Model.POCO.BankAccountPOCO", "CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("BankingSystem.Model.POCO.BankBranchPOCO", b =>
+                {
+                    b.Navigation("BankAccountPOCO");
+                });
+
             modelBuilder.Entity("BankingSystem.Model.POCO.CustomerPOCO", b =>
                 {
                     b.Navigation("AddressPOCO")
+                        .IsRequired();
+
+                    b.Navigation("BankAccountPOCO")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

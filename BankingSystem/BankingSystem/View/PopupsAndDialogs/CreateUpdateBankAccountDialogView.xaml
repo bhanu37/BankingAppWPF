@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="BankingSystem.View.PopupsAndDialogs.CreateUpdateBankAccountDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BankingSystem.View.PopupsAndDialogs"
+             mc:Ignorable="d" 
+             Background="White"
+             Height="350" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="{Binding Header}"/>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Account Type"/>
+                <ComboBox ItemsSource="{Binding BankAccountTypes}" SelectedItem="{Binding SelectedAccountType, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Bank Branch"/>
+                <ComboBox DisplayMemberPath="BranchName" ItemsSource="{Binding BankBranches}" SelectedItem="{Binding SelectedBankBranch}"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Branch Location: "/>
+                <TextBlock Text="{Binding SelectedBankBranch.BranchLocation}" FontSize="20"/>
+                <Label Content="Branch Manager: "/>
+                <TextBlock Text="{Binding SelectedBankBranch.BranchManager}" FontSize="20"/>
+                <Label Content="Branch IFSC: "/>
+                <TextBlock Text="{Binding SelectedBankBranch.IFSCCode}" FontSize="20"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2">
+            <Button Content="Add Account" Command="{Binding AddBankAccountCMD}" Click="Button_Click"></Button>
+            <Button Content="Close" Click="Button_Click"></Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

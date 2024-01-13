@@ -20,14 +20,14 @@ namespace BankingSystem.Model.DataServices
             _dbContext = _contextFactory.CreateDbContext();
         }
 
-        public async Task<CustomerProfile> GetCustomerProfile(int customerId)
+        public async Task<UserProfileDetails> GetUserProfileDetails(int customerId)
         {
-            CustomerProfile customerProfile = null;
+            UserProfileDetails UserProfileDetails = null;
 
             var response = await _dbContext.Customers.FindAsync(customerId);
             if (response != null)
             {
-                customerProfile = new CustomerProfile()
+                UserProfileDetails = new UserProfileDetails()
                 {
                     Name = response.FirstName + " " + response.LastName,
                     Email = response.Email,
@@ -38,7 +38,7 @@ namespace BankingSystem.Model.DataServices
                 };
             }
 
-            return customerProfile;
+            return UserProfileDetails;
         }
         
         public async Task<CustomerPOCO> GetCustomerById(int customerId)

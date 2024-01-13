@@ -13,6 +13,8 @@ namespace BankingSystem.Model.DataBaseConnection
         #region DB Sets
         public DbSet<CustomerPOCO> Customers { get; set; }
         public DbSet<AddressPOCO> Addresses { get; set; }
+        public DbSet<BankAccountPOCO> BankAccounts { get; set; }
+        public DbSet<BankBranchPOCO> BankBranches { get; set; }
         #endregion
 
         #region Ctor

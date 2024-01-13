@@ -18,7 +18,6 @@ namespace BankingSystem.ViewModel.PopupsAndDialogsVM
         private CustomerPOCO _customer;
         private CustomerDataService _customerDataService;
         private NavigationStore _navigationStore;
-        private string _dob;
 
 
 
@@ -27,11 +26,6 @@ namespace BankingSystem.ViewModel.PopupsAndDialogsVM
         {
             get { return _customer; }
             set { _customer = value; OnPropertyChanged(nameof(Customer)); }
-        }
-        public string DOB
-        {
-            get { return _dob; }
-            set { _dob = value; OnPropertyChanged(nameof(DOB)); }
         }
 
         public ICommand UpdateCustomer { get; set; }
@@ -48,7 +42,7 @@ namespace BankingSystem.ViewModel.PopupsAndDialogsVM
 
         private void UpdateCustomerData()
         {
-            Customer.DOB = DateTime.Parse(DOB);
+            Customer.DOB = DateTime.Now;    
             _customerDataService.UpdateCustomerData(Customer);
             _navigationStore.CurrentVM = new ProfileVM(_loggedAccount, _navigationStore);
         }
@@ -56,7 +50,6 @@ namespace BankingSystem.ViewModel.PopupsAndDialogsVM
         private async void LoadData()
         {
             Customer = await _customerDataService.GetCustomerById(_loggedAccount.Id);
-            DOB = Customer.DOB.ToString();
         }
 
         ~UpdateProfileDialogVM() { }
