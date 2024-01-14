@@ -17,8 +17,7 @@
                 <Button Content="Transactions" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToTransactions}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Send Money" Margin="5" Padding="5" FontSize="10" Command=""/>
-                <Button Content="Request Money" Margin="5" Padding="5" FontSize="10" Command=""/>
+                <Button Content="Send Money" Command="{Binding SendMoneyCommand}" Margin="5" Padding="5" FontSize="10"/>
             </StackPanel>
             <Button Content="Log Out" Margin="10" Padding="5" FontSize="10"/>
         </StackPanel>

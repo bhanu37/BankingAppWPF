@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BankingSystem.Model.DataBaseConnection.Migrations
 {
     /// <inheritdoc />
-    public partial class initDb : Migration
+    public partial class createAllDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -99,6 +99,32 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Transactions",
+                columns: table => new
+                {
+                    TransactionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ammount = table.Column<double>(type: "float", nullable: false),
+                    TrasactionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FromAccountId = table.Column<int>(type: "int", nullable: false),
+                    ToAccountId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.TransactionId);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Customers_FromAccountId",
+                        column: x => x.FromAccountId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId");
+                    table.ForeignKey(
+                        name: "FK_Transactions_Customers_ToAccountId",
+                        column: x => x.ToAccountId,
+                        principalTable: "Customers",
+                        principalColumn: "CustomerId");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CustomerId",
                 table: "Addresses",
@@ -121,6 +147,16 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
                 table: "Customers",
                 column: "Email",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_FromAccountId",
+                table: "Transactions",
+                column: "FromAccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_ToAccountId",
+                table: "Transactions",
+                column: "ToAccountId");
         }
 
         /// <inheritdoc />
@@ -131,6 +167,9 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
 
             migrationBuilder.DropTable(
                 name: "BankAccounts");
+
+            migrationBuilder.DropTable(
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "BankBranches");

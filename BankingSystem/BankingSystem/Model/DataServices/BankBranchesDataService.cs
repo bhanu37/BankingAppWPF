@@ -11,18 +11,8 @@ using System.Windows;
 
 namespace BankingSystem.Model.DataServices
 {
-    public class BankBranchesDataService
+    public class BankBranchesDataService : DataServiceBase
     {
-        private BankingSystemDbContextFactory _contextFactory;
-        private BankingSystemDbContext _dbContext;
-
-        public BankBranchesDataService()
-        {
-            _contextFactory = new BankingSystemDbContextFactory();
-            _dbContext = _contextFactory.CreateDbContext();
-        }
-
-
         public async Task<ObservableCollection<BankBranchPOCO>> GetAllBankBranches()
         {
             var response = new ObservableCollection<BankBranchPOCO>();

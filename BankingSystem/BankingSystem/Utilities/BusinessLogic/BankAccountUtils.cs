@@ -1,8 +1,10 @@
 ﻿using BankingSystem.Model.DataServices;
+using BankingSystem.Model.DataServices.QueryableDataService;
 using BankingSystem.Model.Entities;
 using BankingSystem.Model.POCO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,6 +59,13 @@ namespace BankingSystem.Utilities.BusinessLogic
                 Balance = bankAccount.Balance
             };
             return bankAccountDetails;
+        }
+
+        public async Task<ObservableCollection<BankUser>> GetAllUserEmailsAndAccountNumber()
+        {
+            BankAccountAndCustomerDataService bankAccountAndCustomerDataService = new BankAccountAndCustomerDataService();
+            var bankUsers = await bankAccountAndCustomerDataService.GetAllBankUser();
+            return bankUsers;
         }
     }
 }

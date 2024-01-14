@@ -11,17 +11,8 @@ using System.Windows;
 
 namespace BankingSystem.Model.DataServices
 {
-    public class SignupDataService
+    public class SignupDataService : DataServiceBase
     {
-        private BankingSystemDbContext _dbContext;
-        private BankingSystemDbContextFactory _contextFactory;
-
-        public SignupDataService()
-        {
-            _contextFactory = new BankingSystemDbContextFactory();
-            _dbContext = _contextFactory.CreateDbContext();
-        }
-
         public async Task<LoggedAccount> CustomerSignup(string fName, string lName, string email, string password)
         {
             CustomerPOCO customerPOCO = new CustomerPOCO() { FirstName = fName, LastName = lName, Email = email, Password = password };

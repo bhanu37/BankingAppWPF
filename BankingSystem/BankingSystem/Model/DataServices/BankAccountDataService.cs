@@ -9,20 +9,12 @@ using System.Threading.Tasks;
 using BankingSystem.Model.POCO;
 using BankingSystem.Model.Entities;
 using System.Windows;
+using System.Linq.Expressions;
 
 namespace BankingSystem.Model.DataServices
 {
-    public class BankAccountDataService
+    public class BankAccountDataService : DataServiceBase
     {
-        private BankingSystemDbContextFactory _contextFactory;
-        private BankingSystemDbContext _dbContext;
-
-        public BankAccountDataService()
-        {
-            _contextFactory = new BankingSystemDbContextFactory();
-            _dbContext = _contextFactory.CreateDbContext();
-        }
-
         public async Task<bool> AddBankAccount(BankAccountPOCO bankAccount)
         {
             try
@@ -59,6 +51,25 @@ namespace BankingSystem.Model.DataServices
                 MessageBox.Show(ex.Message.ToString());
             }
             return null;
+        }
+
+        public async Task<bool> UpdateBankAccount(BankAccountPOCO bankAccount)
+        {
+            try
+            {
+                var response = await _dbContext.BankAccounts.FindAsync(bankAccount.AccountNumber);
+                if (response != null)
+                {
+                    response.Balance = bankAccount.Balance;
+                    await _dbContext.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString()); 
+            }
+            return false;
         }
     }
 }

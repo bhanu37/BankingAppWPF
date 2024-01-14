@@ -166,6 +166,35 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("BankingSystem.Model.POCO.TransactionPOCO", b =>
+                {
+                    b.Property<int>("TransactionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
+
+                    b.Property<double>("Ammount")
+                        .HasColumnType("float");
+
+                    b.Property<int>("FromAccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ToAccountId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TrasactionTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TransactionId");
+
+                    b.HasIndex("FromAccountId");
+
+                    b.HasIndex("ToAccountId");
+
+                    b.ToTable("Transactions");
+                });
+
             modelBuilder.Entity("BankingSystem.Model.POCO.AddressPOCO", b =>
                 {
                     b.HasOne("BankingSystem.Model.POCO.CustomerPOCO", "Customer")
@@ -194,6 +223,25 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("BankingSystem.Model.POCO.TransactionPOCO", b =>
+                {
+                    b.HasOne("BankingSystem.Model.POCO.CustomerPOCO", "FromAccount")
+                        .WithMany("TransactionPOCO")
+                        .HasForeignKey("FromAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BankingSystem.Model.POCO.CustomerPOCO", "ToAccount")
+                        .WithMany()
+                        .HasForeignKey("ToAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FromAccount");
+
+                    b.Navigation("ToAccount");
+                });
+
             modelBuilder.Entity("BankingSystem.Model.POCO.BankBranchPOCO", b =>
                 {
                     b.Navigation("BankAccountPOCO");
@@ -206,6 +254,8 @@ namespace BankingSystem.Model.DataBaseConnection.Migrations
 
                     b.Navigation("BankAccountPOCO")
                         .IsRequired();
+
+                    b.Navigation("TransactionPOCO");
                 });
 #pragma warning restore 612, 618
         }

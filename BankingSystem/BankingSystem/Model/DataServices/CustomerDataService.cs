@@ -1,25 +1,19 @@
 ﻿using BankingSystem.Model.DataBaseConnection;
 using BankingSystem.Model.Entities;
 using BankingSystem.Model.POCO;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BankingSystem.Model.DataServices
 {
-    public class CustomerDataService
+    public class CustomerDataService : DataServiceBase
     {
-        private BankingSystemDbContext _dbContext;
-        private BankingSystemDbContextFactory _contextFactory;
-
-        public CustomerDataService()
-        {
-            _contextFactory = new BankingSystemDbContextFactory();
-            _dbContext = _contextFactory.CreateDbContext();
-        }
-
         public async Task<UserProfileDetails> GetUserProfileDetails(int customerId)
         {
             UserProfileDetails UserProfileDetails = null;
@@ -61,6 +55,22 @@ namespace BankingSystem.Model.DataServices
 
                 _dbContext.SaveChanges();
             }
+        }
+
+        public async Task<ObservableCollection<CustomerPOCO>> GetAllUsers()
+        {
+            ObservableCollection<CustomerPOCO> customers = null;
+            try
+            {
+                var response = await _dbContext.Customers.ToListAsync();
+                customers = new ObservableCollection<CustomerPOCO>(response);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            
+            return customers;
         }
     }
 }
