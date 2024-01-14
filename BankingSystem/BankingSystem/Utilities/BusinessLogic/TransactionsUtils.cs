@@ -43,9 +43,10 @@ namespace BankingSystem.Utilities.BusinessLogic
                 MessageBox.Show("Reciever don't have bank account");
                 return false;
             }
-            else if(amount > 0)
+            else if(amount > user1.Balance)
             {
                 MessageBox.Show("Insuficient balance");
+                return false;
             }
 
             user1.Balance -= amount; 
