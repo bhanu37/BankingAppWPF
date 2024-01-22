@@ -22,6 +22,7 @@ namespace BankingSystem.Utilities.Commands
         public override void Execute(object? parameter)
         {
             _navigationStore.CurrentVM = _currentVM();
+            _navigationStore.CurrVMTitle = parameter?.ToString();
         }
     }
 }

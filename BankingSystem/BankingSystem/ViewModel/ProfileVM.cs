@@ -27,8 +27,6 @@ namespace BankingSystem.ViewModel
         private UserBankAccountDetails _userBankAccount;
         private bool _bankAccountExist;
 
-
-        public string Header => "Profile Page";
         public ICommand UpdateProfileCMD { get; set; }
         public ICommand CreateBankAccountCMD { get; set; }
 

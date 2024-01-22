@@ -16,7 +16,6 @@ namespace BankingSystem.ViewModel
 {
     public class NavigationSideBarVM : ViewModelBase
     {
-        private IDialogService _dialogService;
         private LoggedAccount _loggedAccount;
         private NavigationStore _navigationStore;
 
@@ -26,22 +25,14 @@ namespace BankingSystem.ViewModel
         public ICommand NavigateToHome { get; set; }
         public ICommand NavigateToProfile { get; set; }
         public ICommand NavigateToTransactions { get; set; }
-        public ICommand SendMoneyCommand { get; set; }
 
         public NavigationSideBarVM(LoggedAccount loggedAccount, NavigationStore navigationStore)
         {
             _loggedAccount = loggedAccount;
             _navigationStore = navigationStore;
-            _dialogService = new OperationalDialogs();
             NavigateToHome = new NavigationCommand(_navigationStore, () => new HomeVM());
             NavigateToProfile = new NavigationCommand(_navigationStore, () => new ProfileVM(_loggedAccount, _navigationStore));
             NavigateToTransactions = new NavigationCommand(_navigationStore, () => new TransactionsVM(_loggedAccount));
-            SendMoneyCommand = new FunctionalCommand(SendMoney);
-        }
-
-        private void SendMoney()
-        {
-            _dialogService.ShowDialog(new SendMoneyDialogView(), new SendMoneyDialogVM(_loggedAccount, _navigationStore));
         }
     }
 }

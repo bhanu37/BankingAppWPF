@@ -12,6 +12,7 @@ namespace BankingSystem.Utilities.BusinessLogic
 {
     public class TransactionsUtils
     {
+        public static Action TransactionDone;
         public async Task<ObservableCollection<TransactionPOCO>> GetAllTransactionsOfUserUtility(int userId)
         {
             BankAccountDataService accountDataService = new BankAccountDataService();
@@ -65,7 +66,8 @@ namespace BankingSystem.Utilities.BusinessLogic
                     };
 
                     if (await tranactionsDataService.AddTransaction(transaction))
-                    { 
+                    {
+                        OnTrasactionDone();
                         return true; 
                     }
                     else
@@ -83,6 +85,11 @@ namespace BankingSystem.Utilities.BusinessLogic
                 }
             }
             return false;
+        }
+
+        private void OnTrasactionDone()
+        {
+            TransactionDone?.Invoke();
         }
     }
 }

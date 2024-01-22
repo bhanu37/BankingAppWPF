@@ -8,16 +8,16 @@ namespace BankingSystem.Utilities.Commands
 {
     public class FunctionalCommand : CommandBase
     {
-        public Action UserLogin { get; }
+        public Action ExecuteAction { get; }
 
-        public FunctionalCommand(Action userLogin)
+        public FunctionalCommand(Action executeAction)
         {
-            UserLogin = userLogin;
+            ExecuteAction = executeAction;
         }
 
         public override void Execute(object? parameter)
         {
-            UserLogin();            
+            ExecuteAction();            
         }
     }
 }

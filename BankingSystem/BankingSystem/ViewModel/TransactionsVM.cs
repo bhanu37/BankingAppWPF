@@ -23,9 +23,6 @@ namespace BankingSystem.ViewModel
             set { _transactions = value; OnPropertyChanged(nameof(Transactions)); }
         }
 
-
-        public string Header => "Transaction Page";
-
         public TransactionsVM(LoggedAccount loggedAccount)
         {
             _loggedAccount = loggedAccount;

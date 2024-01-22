@@ -79,6 +79,8 @@ namespace BankingSystem.ViewModel
                 //signup success
                 _navigationStore.CurrentVM = new HomeVM();
                 _navigationStore.NavSideBarVM = new NavigationSideBarVM(loggedAccount, _navigationStore);
+                _navigationStore.TopBarVM = new TopBarVM(loggedAccount, _navigationStore);
+                _navigationStore.CurrVMTitle = "Home";
             }            
         }
     }

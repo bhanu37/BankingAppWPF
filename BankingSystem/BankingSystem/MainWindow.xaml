@@ -28,6 +28,9 @@
         <DataTemplate DataType="{x:Type vm:NavigationSideBarVM}">
             <vw:NavigationSideBar/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:TopBarVM}">
+            <vw:TopBarView/>
+        </DataTemplate>
     </Window.Resources>
     <Border Height="650" Width="1000" Background="LightGray">
         <Grid Height="650" Width="1000">
@@ -39,9 +42,18 @@
             <ContentControl Grid.Column="0" Content="{Binding NavSideBarVM}">
 
             </ContentControl>
-            <ContentControl Grid.Column="1" Content="{Binding CurrentVM}">
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ContentControl Grid.Row="0" Content="{Binding TopBarVM}">
+                    
+                </ContentControl>
+                <ContentControl Grid.Row="1" Content="{Binding CurrentVM}">
                 
-            </ContentControl>
+                </ContentControl>
+            </Grid>
         </Grid>
     </Border>
 </Window>

@@ -12,12 +12,9 @@
             <Label Content="{Binding Name}" FontSize="20" FontWeight="Bold"/>
             <Label Content="{Binding Email}" FontSize="15"/>
             <StackPanel HorizontalAlignment="Left" Margin="20">
-                <Button Content="Home" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToHome}"/>
-                <Button Content="Profile" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToProfile}"/>
-                <Button Content="Transactions" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToTransactions}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Send Money" Command="{Binding SendMoneyCommand}" Margin="5" Padding="5" FontSize="10"/>
+                <Button Content="Home" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToHome}" CommandParameter="Home"/>
+                <Button Content="Profile" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToProfile}" CommandParameter="Profile"/>
+                <Button Content="Transactions" Margin="5" Padding="5" FontSize="15" Command="{Binding NavigateToTransactions}" CommandParameter="Transactions"/>
             </StackPanel>
             <Button Content="Log Out" Margin="10" Padding="5" FontSize="10"/>
         </StackPanel>

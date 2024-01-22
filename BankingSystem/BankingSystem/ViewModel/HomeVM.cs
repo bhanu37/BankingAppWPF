@@ -9,8 +9,6 @@ namespace BankingSystem.ViewModel
 {
     public class HomeVM : ViewModelBase
     {
-        public string Header => "Home Page";
-
         public HomeVM()
         {
         }

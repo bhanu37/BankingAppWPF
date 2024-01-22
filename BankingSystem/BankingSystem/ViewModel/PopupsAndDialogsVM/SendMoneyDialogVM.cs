@@ -57,6 +57,7 @@ namespace BankingSystem.ViewModel.PopupsAndDialogsVM
             if(res)
             {
                 _navigationStore.CurrentVM = new TransactionsVM(_loggedAccount);
+                _navigationStore.CurrVMTitle = "Transactions";
             }
         }
     }

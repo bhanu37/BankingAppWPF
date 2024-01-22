@@ -67,5 +67,18 @@ namespace BankingSystem.Utilities.BusinessLogic
             var bankUsers = await bankAccountAndCustomerDataService.GetAllBankUser();
             return bankUsers;
         }
+
+        public async Task<double> GetBankAccountBalanceUtility(int userId)
+        {
+            BankAccountDataService bankAccountDataService = new BankAccountDataService();
+            var userBankAccount = await bankAccountDataService.GetBankAccountByUserId(userId);
+
+            if(userBankAccount != null)
+            {
+                return userBankAccount.Balance;
+            }
+
+            return 0;
+        }
     }
 }

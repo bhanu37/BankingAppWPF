@@ -11,10 +11,24 @@ namespace BankingSystem.Utilities.Stores
     {
 		private ViewModelBase _currentVM;
 		private ViewModelBase _navSideBarVM;
+        private ViewModelBase _topBarVM;
+        private string _currVMTitle;
 		public event Action CurrentVMChanged;
+		public event Action CurrVMTitleChanged;
 		public event Action NavSideBarVMChanged;
+		public event Action TopBarVMChanged;
 
-		public ViewModelBase CurrentVM
+        public string CurrVMTitle
+        {
+            get { return _currVMTitle; }
+            set 
+            { 
+                _currVMTitle = value;
+                OnCurrentVMTitleChanged();
+            }
+        }
+
+        public ViewModelBase CurrentVM
 		{
 			get { return _currentVM; }
 			set 
@@ -34,6 +48,20 @@ namespace BankingSystem.Utilities.Stores
             }
         }
 
+        public ViewModelBase TopBarVM
+        {
+            get { return _topBarVM; }
+            set
+            {
+                _topBarVM = value;
+                OnTopBarVMChanged();
+            }
+        }
+
+        private void OnCurrentVMTitleChanged()
+        {
+            CurrVMTitleChanged?.Invoke();
+        }
         private void OnNavSideBarVMChanged()
         {
             NavSideBarVMChanged?.Invoke();
@@ -43,5 +71,9 @@ namespace BankingSystem.Utilities.Stores
 		{
 			CurrentVMChanged?.Invoke();
 		}
+        private void OnTopBarVMChanged()
+        {
+            TopBarVMChanged?.Invoke();
+        }
     }
 }

@@ -6,18 +6,16 @@
              xmlns:local="clr-namespace:BankingSystem.View"
              xmlns:comp="clr-namespace:BankingSystem.View.Components"
              mc:Ignorable="d" 
-             Width="800" Height="650">
+             Width="800" Height="530">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <Label Grid.Row="0" Content="{Binding Header}" FontSize="50"/>
-            <comp:UserProfileDetails Grid.Row="1"/>
-            <comp:UserAccountDetails Grid.Row="2"/>
+            
+            <comp:UserProfileDetails Grid.Row="0"/>
+            <comp:UserAccountDetails Grid.Row="1"/>
         </Grid>
     </ScrollViewer>
 </UserControl>
